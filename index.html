@@ -1,20 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html id="top">
 <head>
     <meta charset="UTF-8" />
     <title>BrainTrain Academy</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-index.css">
 </head>
 <body>
     <header>
-        <!--add logo-->
         <img src="src/logo.jpg" alt="BrainTrain logo" id="logo">
-        <h1>
-            BrainTrain Academy
-        </h1>
+        <h1>BrainTrain Academy</h1>
         <ul>
-            <li><a href="#accueil">Accueil</a></li>
-            <li>Catalogue</li>
+            <li><a href="#top">Accueil</a></li>
+            <li><a href="#catalogue">Catalogue</a></li>
             <li>Equipe</li>
             <li>Avis Étudiants</li>
             <li>Actualités</li>
@@ -22,20 +19,17 @@
         </ul>
     </header>
     <main>
-        <section class="accueil">
-            <!-- Hero Section -->
+        <section id="accueil" class="accueil">
             <div class="hero">
                 <div class="hero-content reveal">
                     <h2>Libérez le Potentiel de Votre Enfant</h2>
                     <p class="tagline">Notre Académie de Nouvelle Génération - Où la Technologie Rencontre la Créativité</p>
                     <a href="#catalogue" class="cta-button">Découvrez Nos Programmes</a>
                 </div>
-                <div class="hero-image reveal" style="justify-self: center;">
+                <div class="hero-image reveal">
                     <img src="src/enfant-robotique.jpg" alt="Enfants apprenant la robotique" height="300px" width="292px">
                 </div>
             </div>
-        
-            <!-- Mission & Vision -->
             <div class="mission-vision">
                 <div class="mission reveal">
                     <img src="src/mission.png" alt="mission icon">
@@ -49,29 +43,69 @@
                 </div>
             </div>
         </section>
+
+        <!-- Embedded Catalogue Section -->
+        <section id="catalogue" class="catalogue-section">
+            <h2>Catalogue des Formations</h2>
+            <div class="iframe-container">
+                <iframe src="src/catalogue.html" class="catalogue-iframe" title="Catalogue des Formations"></iframe>
+            </div>
+        </section>
     </main>
     <script>
+        // Ensure the page stays in the same place on refresh
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.location.hash) {
+                const target = document.querySelector(window.location.hash);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'instant' }); // Scroll to the target section
+                }
+            }
+
+            // Check if the catalogue section is already in view on page load
+            const catalogueSection = document.querySelector('.catalogue-section');
+            if (catalogueSection.getBoundingClientRect().top < window.innerHeight) {
+                const iframe = document.querySelector('.catalogue-iframe');
+                iframe.contentWindow.postMessage('animateCards', '*'); // Trigger animation in the iframe
+            }
+        });
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                     
-                    // Add hover effects only after animation
-                    if(entry.target.classList.contains('mission') || 
-                       entry.target.classList.contains('vision')) {
+                    if (entry.target.classList.contains('mission') || 
+                        entry.target.classList.contains('vision')) {
                         entry.target.style.pointerEvents = 'auto';
                     }
                 }
             });
         }, {
-            threshold: 0.2 // Trigger when 20% of element is visible
+            threshold: 0.2
         });
         
-        // Observe all animated elements
         document.querySelectorAll('.hero-content, .hero-image, .mission, .vision').forEach((el) => {
-            el.style.pointerEvents = 'none'; // Disable hover during animation
+            el.style.pointerEvents = 'none';
             observer.observe(el);
         });
-        </script>
+
+        // Trigger animations when the catalogue section is in view
+        const catalogueObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = document.querySelector('.catalogue-iframe');
+                    iframe.contentWindow.postMessage('animateCards', '*'); // Send a message to the iframe
+                    
+                    // Stop observing after the animation is triggered once
+                    catalogueObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the catalogue section is visible
+        });
+
+        catalogueObserver.observe(document.querySelector('.catalogue-section'));
+    </script>
 </body>
 </html>
