@@ -231,6 +231,7 @@ header ul li:hover {
 .iframe-container {
     position: relative;
     width: 100%;
+    height: fit-content;
     padding-top: 56.25%; /* Aspect ratio 16:9 */
     overflow: hidden;
     border-radius: 10px;
@@ -264,7 +265,7 @@ header ul li:hover {
     color: #2a4185;
 }
 
-.temoignages-iframe,.actualite-iframe {
+.actualite-iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -277,6 +278,22 @@ header ul li:hover {
     transition: opacity 0.6s ease-out;
     overflow: hidden; /* Prevent scrollbars */
 }
+
+
+.temoignages-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Adjust height to fit content */
+    border: none; /* Remove iframe border */ 
+    border-radius: 10px; /* Match the container's rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    opacity: 1;
+    transition: opacity 0.6s ease-out;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
 
 .temoignages-iframe.hidden {
     opacity: 0; /* Initially hidden */
@@ -346,6 +363,43 @@ header ul li:hover {
     font-weight: bold; /* Ensure the heading is bold */
     text-transform: none; /* Remove uppercase if it was applied */
     letter-spacing: normal; /* Ensure no extra letter spacing */
+}
+
+/* Embedded Équipe Section */
+.equipe-section {
+    padding: 40px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.equipe-section h2 {
+    font-size: 2rem; /* Match the font size of other section headings */
+    margin-bottom: 20px; /* Add consistent spacing below the heading */
+    color: #2a4185; /* Use the same color as other headings */
+    font-weight: bold; /* Ensure the heading is bold */
+}
+
+.equipe-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ensure the iframe takes the full height of its container */
+    border: none; /* Remove iframe border */
+    border-radius: 10px; /* Match the container's rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+/* General iframe container styles */
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Aspect ratio 16:9 */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 /* ===== Animations ===== */
@@ -455,9 +509,84 @@ header ul li:hover {
     .mission p, .vision p {
         font-size: 1rem;
     }
+}
 
+/* Footer Styles */
+.footer {
+    background-color: #2a4185;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
 
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
+.footer-nav h3,
+.footer-contact h3,
+.footer-social h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffd700;
+}
 
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav ul li {
+    margin-bottom: 10px;
+}
+
+.footer-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-nav ul li a:hover {
+    color: #ffd700;
+}
+
+.footer-contact p {
+    margin: 5px 0;
+}
+
+.footer-contact a {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+.footer-contact a:hover {
+    text-decoration: underline;
+}
+
+.footer-social .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-social .social-icons a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.footer-social .social-icons a img:hover {
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #ccc;
 }
 
