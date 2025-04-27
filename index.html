@@ -14,7 +14,7 @@
             <li><a href="#catalogue">Catalogue</a></li>
             <li>Equipe</li>
             <li>Avis Étudiants</li>
-            <li>Actualités</li>
+            <li><a href="#actualite">Actualités</a></li>
             <li>Formulaires</li>
         </ul>
     </header>
@@ -107,5 +107,12 @@
 
         catalogueObserver.observe(document.querySelector('.catalogue-section'));
     </script>
+    <!-- Embedded Actualite Section -->
+    <section id="actualite" class="catalogue-section">
+        <h2>Actualite</h2>
+        <div class="iframe-container">
+            <iframe src="src/actualite.html" class="catalogue-iframe" title="Actualite"></iframe>
+        </div>
+    </section>
 </body>
 </html>
