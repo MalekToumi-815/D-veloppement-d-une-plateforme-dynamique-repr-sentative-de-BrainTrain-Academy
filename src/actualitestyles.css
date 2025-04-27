@@ -2,7 +2,7 @@
 .actuality-section {
     padding: 2rem 5%;
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .actuality-grid {
@@ -11,32 +11,37 @@
     gap: 2rem;
     margin-top: 2rem;
     justify-items: center; 
-    align-items: center;
+    align-items: stretch; /* Ensure all cards stretch to the same height */
 }
 
 .actuality-card {
     background: #ffffff;
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
     opacity: 0;
-    transform: translateY(30px);
-    width: 30vw;
+    transform: translateY(50px) scale(0.95); /* Start position for animation */
+    width: 100%; /* Ensure cards take full width of the grid column */
+    height: 100%; /* Ensure cards stretch to match the tallest card */
+    display: flex;
+    flex-direction: column;
 }
 
 .actuality-card.active {
-    animation: fadeInUp 0.8s forwards;
+    animation: fadeInScale 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* Remove duplicate animation property */
 .actuality-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02); /* Slight lift and scale on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Add a larger shadow */
 }
-.actuality-image {
-    height: 300px;
-    position: relative;
 
+.actuality-image {
+    height: 200px; /* Consistent height for all images */
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
 .actuality-image img {
@@ -47,7 +52,7 @@
 }
 
 .actuality-card:hover .actuality-image img {
-    transform: scale(1.05);
+    transform: scale(1.1); /* Slight zoom on hover */
 }
 
 .actuality-label {
@@ -75,11 +80,15 @@
 
 .actuality-content {
     padding: 1.5rem;
+    flex-grow: 1; /* Ensure content stretches to fill the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .actuality-title {
     color: #2a4185;
-    margin: 0 0 1rem 0;
+    margin: 0;
     font-size: 1.2rem;
     line-height: 1.4;
 }
@@ -106,13 +115,19 @@
         height: 250px;
     }
 }
-@keyframes fadeInUp {
-    from {
+
+/* Keyframes for modern fade-in and scale animation */
+@keyframes fadeInScale {
+    0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(50px) scale(0.95);
     }
-    to {
+    50% {
+        opacity: 0.5;
+        transform: translateY(25px) scale(1);
+    }
+    100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }

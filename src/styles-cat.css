@@ -17,11 +17,20 @@ header h1 {
     padding: 20px;
 }
 
+/* General Grid Styles */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    position: relative; /* Ensure cards are positioned relative to the grid */
+    margin-bottom: 40px; /* Add spacing between the two grids */
+}
+
+/* Centered Grid for the Last Three Cards */
+.grid-centered {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ensure three cards are evenly spaced */
+    gap: 20px;
+    justify-content: center; /* Center the grid horizontally */
 }
 
 .card {
