@@ -471,43 +471,148 @@ header ul li:hover {
 
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
+    /* Header */
     header {
         flex-direction: column;
         padding: 1rem;
         height: auto;
     }
-    
+
     header ul {
         margin-top: 1rem;
         flex-wrap: wrap;
         justify-content: center;
         gap: 1rem;
     }
-    
+
+    header ul li {
+        font-size: 1rem; /* Reduce font size for smaller screens */
+    }
+
+    /* Hero Section */
     .hero {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack content vertically */
         text-align: center;
     }
-    
-    .mission-vision {
-        grid-template-columns: 1fr;
+
+    .hero-content {
+        margin-bottom: 2rem;
     }
-    
+
+    .hero-content h2 {
+        font-size: 2rem; /* Reduce font size */
+    }
+
+    .tagline {
+        font-size: 1rem; /* Reduce font size */
+    }
+
+    .cta-button {
+        padding: 0.8rem 1.5rem; /* Adjust button size */
+        font-size: 1rem;
+    }
+
+    .hero-image img {
+        width: 100%; /* Make the image responsive */
+        height: auto;
+    }
+
+    /* Mission & Vision Section */
+    .mission-vision {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+        gap: 1.5rem;
+    }
+
     .mission, .vision {
         margin: 1rem 0;
         padding: 1.5rem;
     }
-    
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-    
+
     .mission h3, .vision h3 {
-        font-size: 1.3rem;
+        font-size: 1.3rem; /* Reduce font size */
     }
-    
+
     .mission p, .vision p {
-        font-size: 1rem;
+        font-size: 1rem; /* Reduce font size */
+    }
+
+    /* Catalogue Section */
+    .catalogue-section h2 {
+        font-size: 1.8rem; /* Reduce font size */
+    }
+
+    .iframe-container {
+        padding-top: 75%; /* Adjust aspect ratio for smaller screens */
+    }
+
+    /* Témoignages Section */
+    .temoignages-section h2 {
+        font-size: 1.8rem; /* Reduce font size */
+    }
+
+    /* Actualité Section */
+    .actualite-section h2 {
+        font-size: 1.8rem; /* Reduce font size */
+    }
+
+    /* Équipe Section */
+    .equipe-section h2 {
+        font-size: 1.8rem; /* Reduce font size */
+    }
+
+    /* Contact Section */
+    .contact-section h2 {
+        font-size: 1.8rem; /* Reduce font size */
+    }
+
+    /* Footer */
+    .footer-container {
+        grid-template-columns: 1fr; /* Stack footer sections vertically */
+        text-align: center;
+    }
+
+    .footer-nav ul {
+        justify-content: center;
+    }
+
+    .footer-contact p, .footer-contact a {
+        font-size: 0.9rem; /* Reduce font size */
+    }
+
+    .footer-social .social-icons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for very small screens */
+    header ul li {
+        font-size: 0.9rem; /* Further reduce font size */
+    }
+
+    .hero-content h2 {
+        font-size: 1.8rem; /* Further reduce font size */
+    }
+
+    .tagline {
+        font-size: 0.9rem; /* Further reduce font size */
+    }
+
+    .cta-button {
+        padding: 0.6rem 1rem; /* Adjust button size */
+        font-size: 0.9rem;
+    }
+
+    .mission h3, .vision h3 {
+        font-size: 1.1rem; /* Further reduce font size */
+    }
+
+    .mission p, .vision p {
+        font-size: 0.9rem; /* Further reduce font size */
+    }
+
+    .footer-contact p, .footer-contact a {
+        font-size: 0.8rem; /* Further reduce font size */
     }
 }
 
