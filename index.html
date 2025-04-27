@@ -12,9 +12,15 @@
         <ul>
             <li><a href="#top">Accueil</a></li>
             <li><a href="#catalogue">Catalogue</a></li>
+            <li><a href="#temoignages" id="temoignages-link">Témoignages</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li>Equipe</li>
+<<<<<<< HEAD
             <li>Avis Étudiants</li>
             <li><a href="#actualite">Actualités</a></li>
+=======
+            <li>Actualités</li>
+>>>>>>> fe14eefd86de70156c2a703df021c34d091a7cd6
             <li>Formulaires</li>
         </ul>
     </header>
@@ -30,18 +36,6 @@
                     <img src="src/enfant-robotique.jpg" alt="Enfants apprenant la robotique" height="300px" width="292px">
                 </div>
             </div>
-            <div class="mission-vision">
-                <div class="mission reveal">
-                    <img src="src/mission.png" alt="mission icon">
-                    <h3>Notre Mission</h3>
-                    <p>Former les jeunes esprits aux compétences du 21e siècle à travers une éducation STEM innovante et pratique</p>
-                </div>
-                <div class="vision reveal">
-                    <img src="src/binoculars.png" alt="vision icon">
-                    <h3>Notre Vision</h3>
-                    <p>Devenir le leader africain dans l'éducation technologique des jeunes d'ici 2030</p>
-                </div>
-            </div>
         </section>
 
         <!-- Embedded Catalogue Section -->
@@ -51,61 +45,118 @@
                 <iframe src="src/catalogue.html" class="catalogue-iframe" title="Catalogue des Formations"></iframe>
             </div>
         </section>
+
+        <!-- Embedded Témoignages Section -->
+        <section id="temoignages" class="temoignages-section">
+            <h2>Ce que disent nos anciens étudiants</h2>
+            <h1>Découvrez les expériences et les réussites de nos anciens étudiants.</h1>
+            <div class="iframe-container">
+                <iframe src="src/temoignages.html" class="temoignages-iframe hidden" title="Témoignages"></iframe>
+            </div>
+        </section>
+
+        <!-- Embedded Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2>Contactez-nous</h2>
+            <div class="iframe-container">
+                <iframe src="src/contact.html" class="contact-iframe" title="Contact & Inscription"></iframe>
+            </div>
+        </section>
     </main>
     <script>
-        // Ensure the page stays in the same place on refresh
         document.addEventListener('DOMContentLoaded', () => {
-            if (window.location.hash) {
-                const target = document.querySelector(window.location.hash);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'instant' }); // Scroll to the target section
+            const temoignagesSection = document.querySelector('.temoignages-section');
+            const temoignagesIframe = document.querySelector('.temoignages-iframe');
+            let temoignagesAnimated = false; // Track if animation has already been triggered
+
+            // Ensure iframe is loaded before sending messages
+            temoignagesIframe.addEventListener('load', () => {
+                if (temoignagesSection.getBoundingClientRect().top < window.innerHeight) {
+                    temoignagesIframe.classList.remove('hidden'); // Make the iframe visible
+                    temoignagesIframe.contentWindow.postMessage('animateCards', '*'); // Trigger animation in the iframe
+                    temoignagesAnimated = true; // Mark as animated
                 }
-            }
+            });
 
-            // Check if the catalogue section is already in view on page load
-            const catalogueSection = document.querySelector('.catalogue-section');
-            if (catalogueSection.getBoundingClientRect().top < window.innerHeight) {
-                const iframe = document.querySelector('.catalogue-iframe');
-                iframe.contentWindow.postMessage('animateCards', '*'); // Trigger animation in the iframe
-            }
-        });
+            // Handle click on the "Témoignages" link
+            document.getElementById('temoignages-link').addEventListener('click', () => {
+                if (!temoignagesAnimated) { // Only trigger animation if not already animated
+                    setTimeout(() => {
+                        temoignagesIframe.classList.remove('hidden'); // Make the iframe visible
+                        temoignagesIframe.contentWindow.postMessage('animateCards', '*'); // Trigger animation in the iframe
+                        temoignagesAnimated = true; // Mark as animated
+                    }, 500); // Delay to ensure the section is scrolled into view
+                }
+            });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    
-                    if (entry.target.classList.contains('mission') || 
-                        entry.target.classList.contains('vision')) {
-                        entry.target.style.pointerEvents = 'auto';
+            // Trigger animations for the temoignages section when scrolled into view
+            const temoignagesObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !temoignagesAnimated) { // Only trigger if not already animated
+                        temoignagesIframe.classList.remove('hidden'); // Make the iframe visible
+                        temoignagesIframe.contentWindow.postMessage('animateCards', '*'); // Trigger animation in the iframe
+                        temoignagesAnimated = true; // Mark as animated
+                        temoignagesObserver.unobserve(entry.target); // Stop observing after animation
                     }
-                }
+                });
+            }, {
+                threshold: 0.5 // Trigger when 50% of the temoignages section is visible
             });
-        }, {
-            threshold: 0.2
-        });
-        
-        document.querySelectorAll('.hero-content, .hero-image, .mission, .vision').forEach((el) => {
-            el.style.pointerEvents = 'none';
-            observer.observe(el);
-        });
 
-        // Trigger animations when the catalogue section is in view
-        const catalogueObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const iframe = document.querySelector('.catalogue-iframe');
-                    iframe.contentWindow.postMessage('animateCards', '*'); // Send a message to the iframe
-                    
-                    // Stop observing after the animation is triggered once
-                    catalogueObserver.unobserve(entry.target);
-                }
+            temoignagesObserver.observe(temoignagesSection);
+
+            // Existing observer for hero content, mission, and vision
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        
+                        if (entry.target.classList.contains('mission') || 
+                            entry.target.classList.contains('vision')) {
+                            entry.target.style.pointerEvents = 'auto';
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.2
             });
-        }, {
-            threshold: 0.5 // Trigger when 50% of the catalogue section is visible
-        });
+            
+            document.querySelectorAll('.hero-content, .hero-image, .mission, .vision').forEach((el) => {
+                el.style.pointerEvents = 'none';
+                observer.observe(el);
+            });
 
-        catalogueObserver.observe(document.querySelector('.catalogue-section'));
+            // Trigger animations when the catalogue section is in view
+            const catalogueObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const iframe = document.querySelector('.catalogue-iframe');
+                        iframe.contentWindow.postMessage('animateCards', '*'); // Send a message to the iframe
+                        
+                        // Stop observing after the animation is triggered once
+                        catalogueObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5 // Trigger when 50% of the catalogue section is visible
+            });
+
+            catalogueObserver.observe(document.querySelector('.catalogue-section'));
+
+            // Trigger animations for the contact section
+            const contactObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in'); // Add fade-in animation class
+                        contactObserver.unobserve(entry.target); // Stop observing after animation
+                    }
+                });
+            }, {
+                threshold: 0.5 // Trigger when 50% of the contact section is visible
+            });
+
+            contactObserver.observe(document.querySelector('.contact-section'));
+        });
     </script>
     <!-- Embedded Actualite Section -->
     <section id="actualite" class="catalogue-section">
