@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue - BrainTrain Academy</title>
+    <link rel="stylesheet" href="../styles/styles-cat.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <main class="container">
+        <!-- Main Grid for the First Set of Cards -->
+        <div class="grid">
+            <div class="card">
+                <div class="icon">
+                    <img src="../images/robotics-icon.png" alt="Robotique Icon">
+                </div>
+                <h2>Formation en Robotique pour Enfants</h2>
+                <p>Apprenez les bases de la robotique à travers des activités interactives et adaptées aux jeunes esprits curieux.</p>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <img src="../images/ai-icon.png" alt="IA Icon">
+                </div>
+                <h2>Formation en Intelligence Artificielle pour Enfants</h2>
+                <p>Découvrez les concepts fondamentaux de l'intelligence artificielle grâce à des projets captivants et éducatifs.</p>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <img src="../images/entrepreneurship-icon.png" alt="Entrepreneuriat Icon">
+                </div>
+                <h2>Formation en Entrepreneuriat pour Enfants</h2>
+                <p>Encouragez l'esprit entrepreneurial chez les enfants avec des ateliers pratiques et des études de cas inspirantes.</p>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <img src="../images/certification-icon.png" alt="Certification Icon">
+                </div>
+                <h2>Formations Certifiées pour Étudiants</h2>
+                <p>Obtenez des certifications reconnues pour renforcer vos compétences académiques et professionnelles.</p>
+            </div>
+        </div>
+
+        <!-- Separate Grid for the Last Three Cards -->
+        <div class="grid-centered">
+            <div class="card">
+                <div class="icon">
+                    <img src="../images/3d-printing-icon.png" alt="3D Printing Icon">
+                </div>
+                <h2>Formation en Impression 3D - Design</h2>
+                <p>Explorez les concepts de l'impression 3D et apprenez à concevoir des modèles innovants pour des projets créatifs.</p>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <img src="../images/personal-development-icon.png" alt="Développement Personnel Icon">
+                </div>
+                <h2>Formation en Développement Personnel</h2>
+                <p>Améliorez vos compétences personnelles et sociales grâce à des ateliers interactifs et des exercices pratiques.</p>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <img src="../images/programming-icon.png" alt="Programmation Icon">
+                </div>
+                <h2>Formation en Programmation</h2>
+                <p>Apprenez les bases de la programmation et développez des projets innovants adaptés aux jeunes esprits curieux.</p>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Listen for messages from the parent page
+        window.addEventListener('message', (event) => {
+            if (event.data === 'animateCards') {
+                document.querySelectorAll('.card').forEach((card, index) => {
+                    card.style.animation = `popUp 0.6s ease-out ${index * 0.2}s forwards`;
+                });
+
+                // Ensure cards stay visible after the animation
+                setTimeout(() => {
+                    document.querySelectorAll('.card').forEach((card) => {
+                        card.style.opacity = '1'; // Keep the cards visible
+                        card.style.transform = 'translateY(0)'; // Reset position
+                        card.style.animation = 'none'; // Remove animation
+                    });
+                }, 2000); // Adjust timeout to match the animation duration
+            }
+        });
+    </script>
+</body>
+</html>
