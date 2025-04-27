@@ -11,13 +11,6 @@ Ce projet consiste à développer une plateforme web dynamique pour **BrainTrain
 - **Équipe** : Présentation des membres de l'équipe.
 - **Contact** : Formulaire pour contacter l'académie ou s'inscrire à une formation.
 
-## Structure du Projet
-
-GitHub Copilot
-Here’s a complete README.md file for your project:
-
-project-root/ ├── index.html # Page principale ├── styles-index.css # Styles CSS pour la page principale ├── images/ # Dossier contenant les images │ ├── logo.jpg # Logo de l'académie │ ├── enfant-robotique.jpg # Image de la section Hero │ ├── mission.png # Icône pour la mission │ ├── binoculars.png # Icône pour la vision │ ├── facebook-icon.png # Icône Facebook │ ├── instagram-icon.png # Icône Instagram │ ├── linkedin-icon.png # Icône LinkedIn │ └── ... # Autres images ├── pages/ # Dossier contenant les pages secondaires │ ├── catalogue.html # Page du catalogue des formations │ ├── temoignages.html # Page des témoignages │ ├── actualite.html # Page des actualités │ ├── equipe.html # Page de l'équipe │ └── contact.html # Page de contact ├── styles/ # Dossier contenant les fichiers CSS │ ├── styles-cat.css # Styles pour la page catalogue │ ├── styles-temoignages.css # Styles pour la page témoignages │ ├── actualitestyles.css # Styles pour la page actualités │ ├── equipe.css # Styles pour la page équipe │ └── styles-contact.css # Styles pour la page contact └── README.md # Documentation du projet
-
 ## Technologies Utilisées
 - **HTML5** : Structure des pages.
 - **CSS3** : Mise en page et styles.
@@ -46,6 +39,6 @@ git push origin feature/nom-de-la-fonctionnalite
 5. Ouvrez une Pull Request.
 
 ## Auteur
-• yezzaha team (malek toumi , oussema sahli )
+• yezzaha team (malek toumi , oussema sahli cpi2_ISIMM)
 
 [Watch the video](showcase_vid.mp4)
